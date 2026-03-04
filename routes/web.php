@@ -10,7 +10,7 @@ use App\Http\Controllers\Facturacion\FacturacionController;
 use App\Http\Controllers\Tramites\TramitesController;
 use App\Http\Controllers\Contacto\ContactoController;
 use App\Http\Controllers\Auth\AuthController;
-
+use App\Http\Controllers\PerfilController;
 // ==========================================
 //  HOME
 // ==========================================
@@ -204,3 +204,23 @@ Route::post('/registro', [AuthController::class, 'registro'])->name('registro.po
 Route::get('/dashboard', function () {
     return view('pages.dashboard'); // El punto indica que entre a la carpeta 'pages'
 })->name('dashboard')->middleware('auth');
+
+// La URL será /perfil, el nombre interno es perfil.index
+Route::get('/perfil', [PerfilController::class, 'index'])->name('perfil.index');
+Route::put('/perfil/actualizar', [PerfilController::class, 'actualizar'])->name('perfil.actualizar');
+Route::put('/perfil/password', [PerfilController::class, 'cambiarPassword'])->name('perfil.password');
+Route::post('/perfil/2fa', [PerfilController::class, 'toggle2fa'])->name('perfil.2fa');
+Route::post('/perfil/sesiones/cerrar', [PerfilController::class, 'cerrarSesiones'])->name('perfil.sesiones.cerrar');
+Route::post('/perfil/sesiones/revocar', [PerfilController::class, 'revocarSesion'])->name('perfil.sesiones.revocar');
+Route::get('/perfil/exportar', [PerfilController::class, 'exportar'])->name('perfil.exportar');
+Route::delete('/perfil/eliminar', [PerfilController::class, 'eliminar'])->name('perfil.eliminar');
+
+Route::middleware('auth')->group(function () {
+    // Esta apunta a resources/views/pages/declaraciones.blade.php
+    // Le cambiamos el nombre a 'mis_declaraciones' para que NO choque
+    Route::get('/mis-declaraciones', function () {return view('pages.declaraciones'); })->name('declaraciones.usuario');
+});
+Route::get('/mis-declaraciones', [DeclaracionesController::class, 'misDeclaraciones'])->name('declaraciones.usuario')->middleware('auth');
+Route::post('/declaraciones', [DeclaracionesController::class, 'store'])->name('declaraciones.store');
+Route::get('/declaraciones/{id}', [DeclaracionesController::class, 'show'])->name('declaraciones.show');
+Route::get('/declaraciones/{id}/acuse', [DeclaracionesController::class, 'acuse'])->name('declaraciones.acuse');

@@ -203,4 +203,39 @@ class DeclaracionesController extends Controller
 
         return 0;
     }
+    
+    public function misDeclaraciones()
+    {
+     // Buscamos las declaraciones que pertenecen al usuario logueado
+     // (Asumiendo que tienes un modelo Declaracion y la tabla tiene user_id)
+     $declaraciones = \App\Models\Declaracion::where('user_id', auth()->id())->get();
+
+     return view('pages.declaraciones', compact('declaraciones'));
+    }
+
+    public function store(Request $request)
+{
+    // 1. Validar los datos básicos que vienen de tu formulario
+    $request->validate([
+        'ejercicio' => 'required|numeric',
+        'tipo'      => 'required|in:anual,provisional,complementaria',
+    ]);
+
+    // 2. Crear la declaración en la base de datos
+    Declaracion::create([
+        'user_id'         => auth()->id(),
+        'rfc'             => auth()->user()->rfc,
+        'no_operacion'    => 'OP-' . strtoupper(Str::random(8)), // Folio aleatorio por ahora
+        'tipo'            => $request->tipo,
+        'ejercicio'       => $request->ejercicio,
+        'estatus'         => 'presentada',
+        'fecha_presentacion' => now(),
+        // Agregamos valores por defecto para que no truene por los campos decimales
+        'ingresos_acumulables' => $request->ingresos ?? 0,
+        'isr_determinado'      => $request->isr ?? 0,
+    ]);
+
+    return redirect()->route('declaraciones.usuario')
+                     ->with('success', 'Declaración presentada con éxito.');
+}
 }

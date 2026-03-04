@@ -21,6 +21,7 @@ return new class extends Migration {
             $table->string('nombres', 80)->nullable();
             $table->string('primer_apellido', 50)->nullable();
             $table->string('segundo_apellido', 50)->nullable();
+            $table->date('fecha_nacimiento')->nullable();
             
             // Campos para Persona Moral
             $table->string('razon_social', 200)->nullable();

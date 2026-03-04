@@ -159,8 +159,8 @@ body{font-family:'Source Sans Pro',sans-serif;background:#0f1923;color:#e2e8f0;d
   <a href="{{ route('dashboard') }}" class="nav-item active">
    <i class="fas fa-home ni"></i><span class="nav-label">Inicio</span>
   </a>
-  <a href="{{ route('declaraciones.index') }}" class="nav-item">
-   <i class="fas fa-file-invoice ni"></i><span class="nav-label">Declaraciones</span>
+  <a href="{{ route('declaraciones.usuario') }}" class="nav-item">
+   <i class="fas fa-file-invoice ni"></i><span class="nav-label">Mi Declaraciones</span>
   </a>
   <a href="{{ route('facturacion.index') }}" class="nav-item">
    <i class="fas fa-file-invoice-dollar ni"></i><span class="nav-label">Facturas CFDI</span>
@@ -185,9 +185,9 @@ body{font-family:'Source Sans Pro',sans-serif;background:#0f1923;color:#e2e8f0;d
   <a href="#" class="nav-item">
    <i class="fas fa-calendar ni"></i><span class="nav-label">Calendario fiscal</span>
   </a>
-  <a href="#" class="nav-item">
-   <i class="fas fa-user-circle ni"></i><span class="nav-label">Mi Perfil</span>
-  </a>
+  <a href="{{ route('perfil.index') }}" class="nav-item"> <i class="fas fa-user-circle ni"></i>
+    <span class="nav-label">Mi Perfil</span>
+</a>
  </div>
 
  <div>

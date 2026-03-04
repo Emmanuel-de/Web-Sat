@@ -78,7 +78,8 @@ class AuthController extends Controller
         'nombres'          => ['required_if:tipo,fisica', 'nullable', 'string', 'max:80'],
         'primer_apellido'  => ['required_if:tipo,fisica', 'nullable', 'string', 'max:50'],
         'curp'             => ['required_if:tipo,fisica', 'nullable', 'string', 'size:18', 'unique:users,curp'],
-        
+        'fecha_nacimiento' => ['required_if:tipo,fisica', 'nullable', 'date'],
+
         // Solo obligatorios si es persona moral
         'razon_social'     => ['required_if:tipo,moral', 'nullable', 'string', 'max:200'],
     ]);
@@ -96,7 +97,8 @@ class AuthController extends Controller
         'nombres'          => $request->nombres,
         'primer_apellido'  => $request->primer_apellido,
         'segundo_apellido' => $request->segundo_apellido,
-
+        'fecha_nacimiento' => $request->fecha_nacimiento,
+        
         // Datos Persona Moral
         'razon_social'     => $request->razon_social,
         'tipo_sociedad'    => $request->tipo_sociedad,
