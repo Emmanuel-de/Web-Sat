@@ -84,18 +84,37 @@ Route::prefix('empresas')->name('empresas.')->group(function () {
 //  DECLARACIONES
 // ==========================================
 Route::prefix('declaraciones')->name('declaraciones.')->group(function () {
+
+    // Vista pública del portal (sin auth)
     Route::get('/', [DeclaracionesController::class, 'index'])->name('index');
 
-    // Anual
-    Route::post('/anual', [DeclaracionesController::class, 'anualStore'])->name('anual.store');
-    Route::get('/anual/{id}/acuse', [DeclaracionesController::class, 'acuse'])->name('acuse');
+    // Rutas protegidas
+    Route::middleware('auth')->group(function () {
 
-    // Provisional
-    Route::post('/provisional', [DeclaracionesController::class, 'provisionalStore'])->name('provisional.store');
+        // ── Formulario del usuario (declaraciones.blade.php) ──────
+        Route::post('/store', [DeclaracionesController::class, 'store'])
+            ->name('store');  // → declaraciones.store
 
-    // Complementaria
-    Route::post('/complementaria', [DeclaracionesController::class, 'complementariaStore'])->name('complementaria.store');
+        // ── Ver detalle y acuse ───────────────────────────────────
+        Route::get('/{declaracion}',       [DeclaracionesController::class, 'show'])
+            ->name('show');   // → declaraciones.show
+        Route::get('/{declaracion}/acuse', [DeclaracionesController::class, 'acuse'])
+            ->name('acuse');  // → declaraciones.acuse
+
+        // ── Endpoints del portal público ─────────────────────────
+        Route::post('/anual',         [DeclaracionesController::class, 'anualStore'])
+            ->name('anual.store');
+        Route::post('/provisional',   [DeclaracionesController::class, 'provisionalStore'])
+            ->name('provisional.store');
+        Route::post('/complementaria',[DeclaracionesController::class, 'complementariaStore'])
+            ->name('complementaria.store');
+    });
 });
+
+// Vista del usuario autenticado (declaraciones.blade.php)
+Route::get('/mis-declaraciones', [DeclaracionesController::class, 'misDeclaraciones'])
+    ->name('declaraciones.usuario')
+    ->middleware('auth');
 
 // ==========================================
 //  FACTURACIÓN ELECTRÓNICA
@@ -215,12 +234,3 @@ Route::post('/perfil/sesiones/revocar', [PerfilController::class, 'revocarSesion
 Route::get('/perfil/exportar', [PerfilController::class, 'exportar'])->name('perfil.exportar');
 Route::delete('/perfil/eliminar', [PerfilController::class, 'eliminar'])->name('perfil.eliminar');
 
-Route::middleware('auth')->group(function () {
-    // Esta apunta a resources/views/pages/declaraciones.blade.php
-    // Le cambiamos el nombre a 'mis_declaraciones' para que NO choque
-    Route::get('/mis-declaraciones', function () {return view('pages.declaraciones'); })->name('declaraciones.usuario');
-});
-Route::get('/mis-declaraciones', [DeclaracionesController::class, 'misDeclaraciones'])->name('declaraciones.usuario')->middleware('auth');
-Route::post('/declaraciones', [DeclaracionesController::class, 'store'])->name('declaraciones.store');
-Route::get('/declaraciones/{id}', [DeclaracionesController::class, 'show'])->name('declaraciones.show');
-Route::get('/declaraciones/{id}/acuse', [DeclaracionesController::class, 'acuse'])->name('declaraciones.acuse');

@@ -414,15 +414,15 @@ select.form-input option{background:#1a2535;color:white}
 
       @forelse($declaraciones ?? [] as $decl)
       <tr>
-       <td class="td-mono">{{ $decl->folio ?? '—' }}</td>
+       <td class="td-mono">{{ $decl->no_operacion ?? '—' }}</td>
        <td class="td-bold">{{ $decl->tipo }}</td>
        <td>{{ $decl->periodo }}</td>
        <td>{{ $decl->ejercicio }}</td>
        <td class="td-bold">${{ number_format($decl->isr_determinado ?? 0, 2) }}</td>
        <td>${{ number_format($decl->isr_retenido ?? 0, 2) }}</td>
-       <td class="{{ ($decl->saldo ?? 0) >= 0 ? 'td-red' : 'td-green' }}">
-        ${{ number_format(abs($decl->saldo ?? 0), 2) }}
-        <span style="font-size:10px;opacity:.7">{{ ($decl->saldo ?? 0) >= 0 ? 'cargo' : 'favor' }}</span>
+       <td class="{{ ($decl->saldo_cargo ?? 0) > 0 ? 'td-red' : 'td-green' }}">
+        ${{ number_format($decl->saldo_cargo > 0 ? $decl->saldo_cargo : $decl->saldo_favor, 2) }}
+        <span style="font-size:10px;opacity:.7">{{ ($decl->saldo_cargo ?? 0) > 0 ? 'cargo' : 'favor' }}</span>
        </td>
        <td>
         @switch($decl->estatus)
