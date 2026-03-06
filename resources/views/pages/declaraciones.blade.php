@@ -236,9 +236,9 @@ select.form-input option{background:#1a2535;color:white}
    <i class="fas fa-home ni"></i><span class="nav-label">Inicio</span>
   </a>
   <a href="{{ route('declaraciones.index') }}" class="nav-item active">
-   <i class="fas fa-file-invoice ni"></i><span class="nav-label">Declaraciones</span>
+   <i class="fas fa-file-invoice ni"></i><span class="nav-label">Mis Declaraciones</span>
   </a>
-  <a href="{{ route('facturacion.index') }}" class="nav-item">
+  <a href="{{ route('facturacion.mis_facturas') }}" class="nav-item">
    <i class="fas fa-file-invoice-dollar ni"></i><span class="nav-label">Facturas CFDI</span>
    <span class="sb-badge">3</span>
   </a>

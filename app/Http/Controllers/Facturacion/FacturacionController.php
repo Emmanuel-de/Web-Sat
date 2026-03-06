@@ -211,6 +211,15 @@ class FacturacionController extends Controller
         ]);
     }
 
+    public function misFacturas()
+    {
+     $facturas = Auth::check()
+        ? Factura::where('user_id', Auth::id())->latest('fecha_timbrado')->paginate(20)
+        : collect();
+
+     return view('pages.misfacturacion', compact('facturas'));
+    }
+
     // ─── Descarga PDF ────────────────────────────────────────────
     public function pdf(Factura $factura)
     {
@@ -234,7 +243,7 @@ class FacturacionController extends Controller
     }
 
     // ─── Helpers privados ────────────────────────────────────────
-    private function generarXmlCfdi(Factura $factura): string
+        private function generarXmlCfdi(Factura $factura): string
     {
         $conceptosXml = '';
         foreach ($factura->conceptos as $c) {
@@ -301,4 +310,6 @@ XML;
 </cfdi:Comprobante>
 XML;
     }
+
+
 }

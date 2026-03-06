@@ -234,3 +234,7 @@ Route::post('/perfil/sesiones/revocar', [PerfilController::class, 'revocarSesion
 Route::get('/perfil/exportar', [PerfilController::class, 'exportar'])->name('perfil.exportar');
 Route::delete('/perfil/eliminar', [PerfilController::class, 'eliminar'])->name('perfil.eliminar');
 
+Route::get('/mis-facturas', [FacturacionController::class, 'misFacturas'])
+    ->name('facturacion.mis_facturas')
+    ->middleware('auth');
+
