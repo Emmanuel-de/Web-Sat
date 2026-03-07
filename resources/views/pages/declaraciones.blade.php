@@ -235,7 +235,7 @@ select.form-input option{background:#1a2535;color:white}
   <a href="{{ route('dashboard') }}" class="nav-item">
    <i class="fas fa-home ni"></i><span class="nav-label">Inicio</span>
   </a>
-  <a href="{{ route('declaraciones.index') }}" class="nav-item active">
+  <a href="{{ route('declaraciones.usuario') }}" class="nav-item active">
    <i class="fas fa-file-invoice ni"></i><span class="nav-label">Mis Declaraciones</span>
   </a>
   <a href="{{ route('facturacion.mis_facturas') }}" class="nav-item">
@@ -253,7 +253,7 @@ select.form-input option{background:#1a2535;color:white}
   <a href="{{ route('personas.e_firma') }}" class="nav-item">
    <i class="fas fa-signature ni"></i><span class="nav-label">e.firma</span>
   </a>
-  <a href="{{ route('contacto.index') }}" class="nav-item">
+  <a href="{{ route('contacto.citas.index') }}" class="nav-item">
    <i class="fas fa-calendar-check ni"></i><span class="nav-label">Citas</span>
   </a>
 
@@ -267,7 +267,7 @@ select.form-input option{background:#1a2535;color:white}
  </div>
 
  <div>
-  <a href="{{ route('home') }}" class="nav-item" style="margin:0 10px 6px">
+  <a href="{{ route('ayuda') }}" class="nav-item" style="margin:0 10px 6px">
    <i class="fas fa-question-circle ni"></i><span class="nav-label">Ayuda</span>
   </a>
   <form action="{{ route('logout') }}" method="POST">
@@ -277,9 +277,9 @@ select.form-input option{background:#1a2535;color:white}
    </button>
   </form>
   <div class="sb-user">
-   <div class="sb-avatar">{{ strtoupper(substr(Auth::user()->nombre ?? 'U', 0, 1)) }}</div>
+   <div class="sb-avatar">{{ strtoupper(substr(Auth::user()->nombres ?? 'U', 0, 1)) }}</div>
    <div class="sb-user-info">
-    <div class="sb-user-name">{{ Auth::user()->nombre ?? 'Usuario' }} {{ Auth::user()->primer_apellido ?? '' }}</div>
+    <div class="sb-user-name">{{ Auth::user()->nombres ?? 'Usuarios' }} {{ Auth::user()->primer_apellido ?? '' }}</div>
     <div class="sb-user-rfc">{{ Auth::user()->rfc ?? 'RFC' }}</div>
    </div>
   </div>
@@ -300,9 +300,9 @@ select.form-input option{background:#1a2535;color:white}
     <span class="tb-notif-dot"></span>
    </a>
    <div class="tb-user">
-    <div class="tb-av">{{ strtoupper(substr(Auth::user()->nombre ?? 'U', 0, 2)) }}</div>
+    <div class="tb-av">{{ strtoupper(substr(Auth::user()->nombres ?? 'U', 0, 2)) }}</div>
     <div class="tb-uinfo">
-     <div class="tb-uname">{{ Auth::user()->nombre ?? 'Usuario' }} {{ Auth::user()->primer_apellido ?? '' }}</div>
+     <div class="tb-uname">{{ Auth::user()->nombres ?? 'Usuarios' }} {{ Auth::user()->primer_apellido ?? '' }} {{ Auth::user()->segundo_apellido ?? '' }}</div>
      <div class="tb-urfc">{{ Auth::user()->rfc ?? 'RFC' }} · CDMX</div>
     </div>
    </div>

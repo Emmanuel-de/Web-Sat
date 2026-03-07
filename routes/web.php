@@ -166,6 +166,10 @@ Route::prefix('contacto')->name('contacto.')->group(function () {
     Route::get('/', [ContactoController::class, 'index'])->name('index');
     Route::post('/mensaje', [ContactoController::class, 'mensajeStore'])->name('mensaje.store');
     Route::post('/queja', [ContactoController::class, 'quejaStore'])->name('queja.store');
+
+    Route::get('/citas', [ContactoController::class, 'citasIndex'])->name('citas.index');
+    Route::post('/cita', [ContactoController::class, 'citaStore'])->name('cita.store');
+    Route::get('/cita/{folio}/cancelar', [ContactoController::class, 'citaCancelar'])->name('cita.cancelar');
 });
 
 // ==========================================
@@ -238,3 +242,6 @@ Route::get('/mis-facturas', [FacturacionController::class, 'misFacturas'])
     ->name('facturacion.mis_facturas')
     ->middleware('auth');
 
+Route::get('/ayuda', function () {
+    return view('pages.ayuda');
+})->name('ayuda')->middleware('auth');

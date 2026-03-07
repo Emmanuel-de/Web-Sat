@@ -88,4 +88,52 @@ class ContactoController extends Controller
             'folio'   => $contacto->folio,
         ]);
     }
+
+    public function citasIndex()
+{
+    $modulos  = ModuloSat::activos()->orderBy('estado')->get();
+    $misCitas = Auth::check()
+        ? Cita::where('user_id', Auth::id())->with('modulo')->latest()->paginate(5)
+        : collect();
+
+    return view('pages.Miscitas', compact('modulos', 'misCitas'));
+}
+
+    public function citaStore(Request $request)
+{
+    $data = $request->validate([
+        'rfc'          => ['required','string','regex:/^[A-ZÑ&]{3,4}\d{6}[A-Z0-9]{3}$/i'],
+        'curp'         => ['required','string','size:18'],
+        'nombre'       => ['required','string','max:150'],
+        'email'        => ['required','email'],
+        'telefono'     => ['nullable','digits:10'],
+        'modulo_sat_id'=> ['required','exists:modulos_sat,id'],
+        'tramite'      => ['required','in:RFC,EFIRMA,CIF,DECLARACION,DEVOLUCION,OPINION,FACTURACION,OTROS'],
+        'fecha'        => ['required','date','after:today'],
+        'horario'      => ['required','string'],
+        'observaciones'=> ['nullable','string','max:500'],
+    ]);
+
+    $cita = Cita::create([
+        ...$data,
+        'user_id' => Auth::id(),
+        'rfc'     => strtoupper($data['rfc']),
+        'curp'    => strtoupper($data['curp']),
+    ]);
+
+    return redirect()->route('contacto.citas.index')
+        ->with('success', "Cita confirmada. Folio: {$cita->folio} · Código: {$cita->codigo_confirmacion}");
+}
+
+public function citaCancelar(string $folio)
+{
+    $cita = Cita::where('folio', $folio)
+                ->where('user_id', Auth::id())
+                ->firstOrFail();
+
+    $cita->update(['estatus' => 'cancelada']);
+
+    return redirect()->route('contacto.citas.index')
+        ->with('success', "La cita {$folio} fue cancelada correctamente.");
+}
 }
