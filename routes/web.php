@@ -245,3 +245,9 @@ Route::get('/mis-facturas', [FacturacionController::class, 'misFacturas'])
 Route::get('/ayuda', function () {
     return view('pages.ayuda');
 })->name('ayuda')->middleware('auth');
+
+Route::get('/personas/rfc/constancia/{rfc}', [RfcController::class, 'constancia'])
+     ->name('personas.rfc.constancia');
+     // routes/web.php
+Route::get('/personas/rfc/buscar/{rfc}', [RfcController::class, 'buscar'])
+     ->name('personas.rfc.buscar');

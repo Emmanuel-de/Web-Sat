@@ -12,38 +12,39 @@ class SolicitudRfc extends Model
     protected $table = 'solicitudes_rfc';
 
     protected $fillable = [
-        'user_id',
-        'folio',
-        'primer_apellido',
-        'segundo_apellido',
-        'nombres',
-        'fecha_nacimiento',
-        'sexo',
-        'estado_nacimiento',
-        'curp',
-        'email',
-        'telefono',
-        'tipo_identificacion',
-        // Domicilio fiscal
-        'codigo_postal',
-        'estado',
-        'municipio',
-        'colonia',
-        'calle',
-        'no_exterior',
-        'no_interior',
-        'entre_calles',
-        // Actividad
-        'regimen_fiscal',
-        'actividad_principal',
-        'descripcion_actividad',
-        'fecha_inicio_actividades',
-        // Resultado
-        'rfc_asignado',
-        'estatus',       // 'pendiente' | 'procesada' | 'rechazada'
-        'observaciones',
-        'fecha_resolucion',
-    ];
+    'user_id',
+    'folio',
+    'primer_apellido',
+    'segundo_apellido',
+    'nombres',
+    'fecha_nacimiento',
+    'sexo',
+    'estado_nacimiento',
+    'curp',
+    'rfc',
+    'email',
+    'telefono',
+    'tipo_identificacion',
+    // Domicilio fiscal
+    'codigo_postal',
+    'estado',
+    'municipio',
+    'colonia',
+    'calle',
+    'no_exterior',
+    'no_interior',
+    'entre_calles',
+    // Actividad
+    'regimen_fiscal',
+    'actividad_principal',
+    'descripcion_actividad',
+    'fecha_inicio_actividades',
+    // Resultado
+    'estatus',
+    'observaciones',
+    'fecha_resolucion',
+];
+
 
     protected $casts = [
         'fecha_nacimiento'        => 'date',
