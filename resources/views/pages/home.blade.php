@@ -26,7 +26,7 @@
             </div>
             <div class="sat-hero-stats">
                 <div class="sat-hero-stat">
-                    <span class="sat-hero-stat-num" data-count="89" data-suffix="M+">0</span>
+                    <span class="sat-hero-stat-num" data-count="{{ $totalContribuyentes }}" data-suffix="">{{ $totalContribuyentes }}</span>
                     <div class="sat-hero-stat-label">Contribuyentes</div>
                 </div>
                 <div class="sat-hero-stat">

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Personas\RfcController;
 use App\Http\Controllers\Personas\PersonasController;
+use App\Http\Controllers\Personas\MiRfcController;
 use App\Http\Controllers\Empresas\EmpresasController;
 use App\Http\Controllers\Declaraciones\DeclaracionesController;
 use App\Http\Controllers\Facturacion\FacturacionController;
@@ -251,3 +252,7 @@ Route::get('/personas/rfc/constancia/{rfc}', [RfcController::class, 'constancia'
      // routes/web.php
 Route::get('/personas/rfc/buscar/{rfc}', [RfcController::class, 'buscar'])
      ->name('personas.rfc.buscar');
+
+Route::get('/mi-rfc', [MiRfcController::class, 'index'])
+    ->name('personas.mi_rfc')
+    ->middleware('auth');
