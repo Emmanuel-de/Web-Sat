@@ -183,6 +183,15 @@ class RfcController extends Controller
         // Por ahora devolvemos la vista de constancia:
         return view('pages.personas.constancia_rfc', compact('solicitud'));
     }
+    
+    public function miConstancia()
+{
+    $rfc = strtoupper(Auth::user()->rfc ?? '');
+
+    $solicitud = SolicitudRfc::where('rfc', $rfc)->firstOrFail();
+
+    return view('pages.Miconstancia_fiscal', compact('solicitud'));
+}
 
     public function buscar(string $rfc)
 {

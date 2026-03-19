@@ -175,10 +175,10 @@ body{font-family:'Source Sans Pro',sans-serif;background:#0f1923;color:#e2e8f0;d
   <a href="{{ route('personas.mi_rfc') }}" class="nav-item active">
    <i class="fas fa-id-card ni"></i><span class="nav-label">Mi RFC</span>
   </a>
-  <a href="{{ route('personas.cif') }}" class="nav-item">
+  <a href="{{ route('personas.mi_constancia') }}" class="nav-item">
    <i class="fas fa-file-alt ni"></i><span class="nav-label">Constancia Fiscal</span>
   </a>
-  <a href="{{ route('personas.e_firma') }}" class="nav-item">
+  <a href="{{ route('personas.mie_firma') }}" class="nav-item">
    <i class="fas fa-signature ni"></i><span class="nav-label">e.firma</span>
   </a>
   <a href="{{ route('contacto.citas.index') }}" class="nav-item">

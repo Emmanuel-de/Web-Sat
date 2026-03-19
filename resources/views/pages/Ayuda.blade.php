@@ -151,10 +151,10 @@
  <div class="quick-grid">
   <a href="{{ route('declaraciones.usuario') }}" class="quick-card"><i class="fas fa-file-invoice" style="color:#4ade80"></i><span>Presentar Declaración</span></a>
   <a href="{{ route('facturacion.mis_facturas') }}" class="quick-card"><i class="fas fa-file-invoice-dollar" style="color:#60a5fa"></i><span>Emitir CFDI</span></a>
-  <a href="{{ route('personas.cif') }}" class="quick-card"><i class="fas fa-file-alt" style="color:#fb923c"></i><span>Constancia Fiscal</span></a>
+  <a href="{{ route('personas.mi_constancia') }}" class="quick-card"><i class="fas fa-file-alt" style="color:#fb923c"></i><span>Constancia Fiscal</span></a>
   <a href="{{ route('contacto.citas.index') }}" class="quick-card"><i class="fas fa-calendar-check" style="color:#fbbf24"></i><span>Agendar Cita</span></a>
   <a href="{{ route('personas.mi_rfc') }}" class="quick-card"><i class="fas fa-id-card" style="color:#a78bfa"></i><span>Consultar RFC</span></a>
-  <a href="{{ route('personas.e_firma') }}" class="quick-card"><i class="fas fa-signature" style="color:#f87171"></i><span>e.firma</span></a>
+  <a href="{{ route('personas.mie_firma') }}" class="quick-card"><i class="fas fa-signature" style="color:#f87171"></i><span>e.firma</span></a>
   <a href="{{ route('perfil.index') }}" class="quick-card"><i class="fas fa-user-cog" style="color:#34d399"></i><span>Mi Perfil</span></a>
   <a href="#faq" class="quick-card"><i class="fas fa-question-circle" style="color:#60a5fa"></i><span>Preguntas Frecuentes</span></a>
  </div>

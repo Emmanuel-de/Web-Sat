@@ -12,7 +12,8 @@ class HomeController extends Controller
     {
         $noticias = Noticia::activas()->recientes(3)->get();
         $totalContribuyentes = User::count();
-        return view('pages.home', compact('noticias', 'totalContribuyentes'));
+        $totalFacturas = \DB::table('facturas')->count();
+        return view('pages.home', compact('noticias', 'totalContribuyentes', 'totalFacturas'));
     }
 
     public function dashboard() {

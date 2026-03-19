@@ -30,7 +30,7 @@
                     <div class="sat-hero-stat-label">Contribuyentes</div>
                 </div>
                 <div class="sat-hero-stat">
-                    <span class="sat-hero-stat-num" data-count="4.2" data-suffix="T">0</span>
+                    <span class="sat-hero-stat-num" data-count="{{ $totalFacturas }}" data-suffix="">{{ $totalFacturas }}</span>
                     <div class="sat-hero-stat-label">Facturas emitidas</div>
                 </div>
             </div>
