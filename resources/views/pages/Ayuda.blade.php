@@ -142,7 +142,7 @@
  <span class="status-text"><strong>Todos los sistemas operativos</strong> — Portal SAT, timbrado CFDI y servicios en línea funcionando con normalidad. Última verificación: hace 5 minutos.</span>
 </div>
 
-{{-- ── Accesos rápidos ── --}}
+{{-- ── Accesos rápidos ── k--}}
 <div class="panel-card">
  <div class="panel-header">
   <div class="panel-icon green"><i class="fas fa-bolt"></i></div>
